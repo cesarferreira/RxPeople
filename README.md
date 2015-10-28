@@ -1,5 +1,5 @@
 # RxPeople
-> A Library for generating random user data. Like Lorem Ipsum, but for people.
+> A Library with fluent API for generating random user data. Like Lorem Ipsum, but for people.
 
 <p align="center">
 <img src="https://raw.github.com/cesarferreira/rxpeople/master/extras/images/contact.gif?raw=true" width="100%" />
@@ -7,22 +7,23 @@
 
 ## Usage
 
-Simple Usage:
+
+Getting 100 random women and men from random countries:
 ```java
 RxPeople.with(context)
-         .amount(50)
+         .amount(100)
          .intoObservable()
          .subscribe(users -> {
             // todo: what you please
          });
 ```
 
+Being specific: **Getting 50 brazillian women:**
 
-Advanced: *Get 50 american women:*
 ```java
 RxPeople.with(context)
          .amount(50)
-         .nationality(Nationality.US)
+         .nationality(Nationality.BR)
          .gender(Gender.FEMALE)
          .intoObservable()
          .subscribe(users -> {
@@ -30,6 +31,11 @@ RxPeople.with(context)
          });
 ```
 
+
+### Useful info
+- An **example.json** of a complete **User** can be found [here](https://raw.github.com/cesarferreira/rxpeople/master/extras/sample_response.json);
+- Random User documentation https://randomuser.me/documentation;
+- RandomUser stats https://randomuser.me/stats
 
 ## Install
 
