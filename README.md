@@ -33,9 +33,9 @@ RxPeople.with(context)
 
 
 ### Useful info
-- An **example.json** of a complete **User** can be found [here](https://raw.github.com/cesarferreira/rxpeople/master/extras/sample_response.json);
-- Random User documentation https://randomuser.me/documentation;
-- RandomUser stats https://randomuser.me/stats
+- It's **really important** to set both `.subscribeOn()` and `.observeOn()` it's the only way to guarantee the thread which the request is gonna run at (if you don't know why I'm asking this read my blog post [Party tricks with Rxjava](https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c)).
+- An **example.json** of a complete **User** can be found [here](https://raw.github.com/cesarferreira/rxpeople/master/extras/sample_response.json)
+- Don't forget to check the [Sample project]( https://github.com/cesarferreira/RxPeople/blob/master/sample/src/main/java/github/cesarferreira/rxpeople/sample/UsersAdapterFragment.java)
 
 ## Install
 
