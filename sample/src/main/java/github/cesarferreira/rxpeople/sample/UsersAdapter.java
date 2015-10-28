@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -34,10 +35,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         FakeUser item = items.get(position);
 
-        holder.titleTextView.setText(String.format("%s %s", item.name.first, item.name.last));
-        holder.subtitleTextView.setText(item.location.street);
+        holder.titleTextView.setText(item.getFullName());
+        holder.subtitleTextView.setText(item.getLocation().getStreet());
 
-        setupImage(holder.imageView, item.picture.medium);
+        setupImage(holder.imageView, item.getPicture().medium);
 
         holder.itemView.setTag(item);
     }
@@ -77,7 +78,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
 
         @Override
         public void onClick(View v) {
-            System.out.println("You clicked: " + getAdapterPosition());
+            Toast.makeText(mContext, "You clicked: " + items.get(getAdapterPosition()).getFullName(), Toast.LENGTH_SHORT).show();
+            System.out.println("You clicked: " + items.get(getAdapterPosition()).getFullName());
         }
     }
 }

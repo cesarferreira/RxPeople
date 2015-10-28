@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class UsersAdapterFragment extends Fragment {
         showProgress();
 
         RxPeople.with(mContext)
-                .amount(60)
+                .amount(260)
                 .nationality(Nationality.ES)
                 .gender(Gender.FEMALE)
                 .intoObservable()
@@ -82,6 +83,7 @@ public class UsersAdapterFragment extends Fragment {
                     public void onError(Throwable e) {
                         hideProgress();
                         e.printStackTrace();
+                        Toast.makeText(getActivity(), "Error: " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override

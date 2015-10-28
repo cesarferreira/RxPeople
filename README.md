@@ -42,7 +42,7 @@ RxPeople.with(context)
 Add the dependency in the form:
 ```groovy
 dependencies {
-  compile 'com.cesarferreira.rxpeople:rxpeople:0.1.0'
+  compile 'com.cesarferreira.rxpeople:rxpeople:0.2.1'
 }
 ```
 

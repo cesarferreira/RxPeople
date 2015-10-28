@@ -75,10 +75,6 @@ public class RxPeople {
 
     public Observable<List<FakeUser>> intoObservable() {
 
-        if (mAmount > 100 || mAmount < 1) {
-            // todo something here
-        }
-
         String nationality = mNationality != null ? mNationality.toString() : null;
         Integer amount = mAmount > 0 ? mAmount : null;
         String gender = mGender != null ? mGender.toString() : null;
@@ -88,9 +84,9 @@ public class RxPeople {
                     List<FakeUser> users = new ArrayList<>();
 
                     for (EncapsulatedUser encapsulatedUser : fetchedData.results) {
-                        encapsulatedUser.user.name.title = upperCaseFirstLetter(encapsulatedUser.user.name.title);
-                        encapsulatedUser.user.name.first = upperCaseFirstLetter(encapsulatedUser.user.name.first);
-                        encapsulatedUser.user.name.last = upperCaseFirstLetter(encapsulatedUser.user.name.last);
+                        encapsulatedUser.user.getName().title = upperCaseFirstLetter(encapsulatedUser.user.getName().title);
+                        encapsulatedUser.user.getName().first = upperCaseFirstLetter(encapsulatedUser.user.getName().first);
+                        encapsulatedUser.user.getName().last = upperCaseFirstLetter(encapsulatedUser.user.getName().last);
 
                         users.add(encapsulatedUser.user);
                     }
