@@ -18,7 +18,7 @@ RxPeople.with(context)
          });
 ```
 
-Being specific: **Getting 50 brazillian women:**
+Being specific: **Getting 50 Brazilian women:**
 
 ```java
 RxPeople.with(context)
@@ -33,9 +33,10 @@ RxPeople.with(context)
 
 
 ### Useful info
-- It's **really important** to set both `.subscribeOn()` and `.observeOn()` it's the only way to guarantee the thread which the request is gonna run at (if you don't know why I'm asking this read my blog post [Party tricks with Rxjava](https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c)).
-- An **example.json** of a complete **User** can be found [here](https://raw.github.com/cesarferreira/rxpeople/master/extras/sample_response.json)
-- Don't forget to check the [Sample project]( https://github.com/cesarferreira/RxPeople/blob/master/sample/src/main/java/github/cesarferreira/rxpeople/sample/UsersAdapterFragment.java)
+- It's **really important** to set both `.subscribeOn()` and `.observeOn()` it's the only way to guarantee the thread which the request is gonna run at (if you don't know why I'm asking this read my blog post [Party tricks with Rxjava](https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c));
+- Want to convert my *FakeUser* class into your own *UserClass*? use a *flatMap* to transform it before subscribing to the *Observer*, easypeasy;
+- An **example.json** of a complete **User** can be found [here](https://raw.github.com/cesarferreira/rxpeople/master/extras/sample_response.json);
+- Don't forget to check the [Sample project]( https://github.com/cesarferreira/RxPeople/blob/master/sample/src/main/java/github/cesarferreira/rxpeople/sample/UsersAdapterFragment.java).
 
 ## Install
 
