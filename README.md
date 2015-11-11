@@ -1,4 +1,4 @@
-# RxPeople
+# RxPeople [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-RxPeople-green.svg?style=true)](https://android-arsenal.com/details/1/2766)
 > A Library with fluent API for generating random user data. Like Lorem Ipsum, but for people.
 
 <p align="center">
