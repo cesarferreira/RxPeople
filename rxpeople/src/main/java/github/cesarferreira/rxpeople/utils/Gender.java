@@ -1,8 +1,9 @@
 package github.cesarferreira.rxpeople.utils;
 
-public enum Gender {
+public class Gender {
 
-    MALE("male"), FEMALE("female");
+    public static final String MALE = "male";
+    public static final String FEMALE = "female";
 
     private final String name;
 

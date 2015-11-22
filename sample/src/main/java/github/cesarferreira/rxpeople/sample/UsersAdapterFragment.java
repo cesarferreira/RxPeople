@@ -67,8 +67,8 @@ public class UsersAdapterFragment extends Fragment {
         showProgress();
 
         RxPeople.with(mContext)
-                .amount(260)
-                .nationality(Nationality.ES)
+                .amount(80)
+                .nationality(Nationality.BR)
                 .gender(Gender.FEMALE)
                 .intoObservable()
                 .subscribeOn(Schedulers.newThread())

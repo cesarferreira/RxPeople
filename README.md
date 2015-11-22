@@ -18,7 +18,7 @@ RxPeople.with(context)
          });
 ```
 
-Being specific: **Getting 50 Brazilian women:**
+Being specific: **Getting 50 women from Brazil:**
 
 ```java
 RxPeople.with(context)

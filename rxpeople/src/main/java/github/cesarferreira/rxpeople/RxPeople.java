@@ -7,18 +7,18 @@ import java.util.List;
 
 import github.cesarferreira.rxpeople.models.EncapsulatedUser;
 import github.cesarferreira.rxpeople.models.FakeUser;
+import github.cesarferreira.rxpeople.models.FetchedData;
 import github.cesarferreira.rxpeople.rest.RestClient;
-import github.cesarferreira.rxpeople.utils.Gender;
-import github.cesarferreira.rxpeople.utils.Nationality;
 import rx.Observable;
+import rx.functions.Func1;
 
 
 public class RxPeople {
 
     private Context mContext;
     private static RxPeople mRxPeople;
-    private Nationality mNationality;
-    private Gender mGender;
+    private String mNationality;
+    private String mGender;
     private int mAmount;
     private String mSeed;
 
@@ -34,7 +34,7 @@ public class RxPeople {
     /**
      * Set the nationality
      */
-    public RxPeople nationality(Nationality nationality) {
+    public RxPeople nationality(String nationality) {
         mNationality = nationality;
         return mRxPeople;
     }
@@ -42,7 +42,7 @@ public class RxPeople {
     /**
      * Set the gender
      */
-    public RxPeople gender(Gender gender) {
+    public RxPeople gender(String gender) {
         mGender = gender;
         return mRxPeople;
     }
@@ -80,17 +80,20 @@ public class RxPeople {
         String gender = mGender != null ? mGender.toString() : null;
 
         return new RestClient().getAPI().getUsers(nationality, mSeed, amount, gender)
-                .map(fetchedData -> {
-                    List<FakeUser> users = new ArrayList<>();
+                .map(new Func1<FetchedData, List<FakeUser>>() {
+                    @Override
+                    public List<FakeUser> call(FetchedData fetchedData) {
+                        List<FakeUser> users = new ArrayList<>();
 
-                    for (EncapsulatedUser encapsulatedUser : fetchedData.results) {
-                        encapsulatedUser.user.getName().title = upperCaseFirstLetter(encapsulatedUser.user.getName().title);
-                        encapsulatedUser.user.getName().first = upperCaseFirstLetter(encapsulatedUser.user.getName().first);
-                        encapsulatedUser.user.getName().last = upperCaseFirstLetter(encapsulatedUser.user.getName().last);
+                        for (EncapsulatedUser encapsulatedUser : fetchedData.results) {
+                            encapsulatedUser.user.getName().title = RxPeople.this.upperCaseFirstLetter(encapsulatedUser.user.getName().title);
+                            encapsulatedUser.user.getName().first = RxPeople.this.upperCaseFirstLetter(encapsulatedUser.user.getName().first);
+                            encapsulatedUser.user.getName().last = RxPeople.this.upperCaseFirstLetter(encapsulatedUser.user.getName().last);
 
-                        users.add(encapsulatedUser.user);
+                            users.add(encapsulatedUser.user);
+                        }
+                        return users;
                     }
-                    return users;
                 });
     }
 
