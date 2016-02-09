@@ -1,7 +1,7 @@
 package github.cesarferreira.rxpeople.models;
 
 
-public class FakeUser {
+public class FakeUser implements Comparable<FakeUser>{
     public FakeUser() {
     }
 
@@ -164,5 +164,8 @@ public class FakeUser {
         this.picture = picture;
     }
 
-
+    @Override
+    public int compareTo(FakeUser fakeUser) {
+        return (this.name.first).compareTo(fakeUser.name.first);
+    }
 }

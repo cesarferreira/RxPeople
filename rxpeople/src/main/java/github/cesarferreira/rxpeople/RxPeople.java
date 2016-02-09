@@ -2,7 +2,6 @@ package github.cesarferreira.rxpeople;
 
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import github.cesarferreira.rxpeople.models.EncapsulatedUser;
@@ -79,22 +78,24 @@ public class RxPeople {
         Integer amount = mAmount > 0 ? mAmount : null;
         String gender = mGender != null ? mGender.toString() : null;
 
-        return new RestClient().getAPI().getUsers(nationality, mSeed, amount, gender)
-                .map(new Func1<FetchedData, List<FakeUser>>() {
-                    @Override
-                    public List<FakeUser> call(FetchedData fetchedData) {
-                        List<FakeUser> users = new ArrayList<>();
-
-                        for (EncapsulatedUser encapsulatedUser : fetchedData.results) {
+        return new RestClient()
+                    .getAPI()
+                    .getUsers(nationality, mSeed, amount, gender)
+                    .flatMap(new Func1<FetchedData, Observable<EncapsulatedUser>>() {
+                        @Override
+                        public Observable<EncapsulatedUser> call(FetchedData fetchedData) {
+                            return Observable.from(fetchedData.results);
+                        }
+                    }).flatMap(new Func1<EncapsulatedUser, Observable<FakeUser>>() {
+                        @Override
+                        public Observable<FakeUser> call(EncapsulatedUser encapsulatedUser) {
                             encapsulatedUser.user.getName().title = RxPeople.this.upperCaseFirstLetter(encapsulatedUser.user.getName().title);
                             encapsulatedUser.user.getName().first = RxPeople.this.upperCaseFirstLetter(encapsulatedUser.user.getName().first);
                             encapsulatedUser.user.getName().last = RxPeople.this.upperCaseFirstLetter(encapsulatedUser.user.getName().last);
 
-                            users.add(encapsulatedUser.user);
+                            return Observable.just(encapsulatedUser.user);
                         }
-                        return users;
-                    }
-                });
+                    }).toSortedList();
     }
 
 }
