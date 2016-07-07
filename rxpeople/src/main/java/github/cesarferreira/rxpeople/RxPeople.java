@@ -81,19 +81,19 @@ public class RxPeople {
         return new RestClient()
                     .getAPI()
                     .getUsers(nationality, mSeed, amount, gender)
-                    .flatMap(new Func1<FetchedData, Observable<EncapsulatedUser>>() {
+                    .flatMap(new Func1<FetchedData, Observable<FakeUser>>() {
                         @Override
-                        public Observable<EncapsulatedUser> call(FetchedData fetchedData) {
+                        public Observable<FakeUser> call(FetchedData fetchedData) {
                             return Observable.from(fetchedData.results);
                         }
-                    }).flatMap(new Func1<EncapsulatedUser, Observable<FakeUser>>() {
+                    }).flatMap(new Func1<FakeUser, Observable<FakeUser>>() {
                         @Override
-                        public Observable<FakeUser> call(EncapsulatedUser encapsulatedUser) {
-                            encapsulatedUser.user.getName().title = RxPeople.this.upperCaseFirstLetter(encapsulatedUser.user.getName().title);
-                            encapsulatedUser.user.getName().first = RxPeople.this.upperCaseFirstLetter(encapsulatedUser.user.getName().first);
-                            encapsulatedUser.user.getName().last = RxPeople.this.upperCaseFirstLetter(encapsulatedUser.user.getName().last);
+                        public Observable<FakeUser> call(FakeUser user) {
+                            user.getName().title = RxPeople.this.upperCaseFirstLetter(user.getName().title);
+                            user.getName().first = RxPeople.this.upperCaseFirstLetter(user.getName().first);
+                            user.getName().last = RxPeople.this.upperCaseFirstLetter(user.getName().last);
 
-                            return Observable.just(encapsulatedUser.user);
+                            return Observable.just(user);
                         }
                     }).toSortedList();
     }
