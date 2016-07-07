@@ -7,5 +7,5 @@ import java.util.List;
 public class FetchedData {
 
     @SerializedName("results")
-    public List<EncapsulatedUser> results;
+    public List<FakeUser> results;
 }
