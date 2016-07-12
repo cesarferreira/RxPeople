@@ -1,0 +1,10 @@
+language: android
+jdk: oraclejdk7
+android:
+  components:
+  - platform-tools
+  - tools
+  - build-tools-24.0.0
+  - android-23
+  - extra-android-m2repository
+script: ./gradlew -PdisablePreDex build
